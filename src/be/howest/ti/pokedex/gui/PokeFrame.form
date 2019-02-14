@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="be.howest.ti.pokedex.gui.PokeFrame">
+  <grid id="27dc6" binding="mainPanel" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+    <margin top="0" left="0" bottom="0" right="0"/>
+    <constraints>
+      <xy x="20" y="20" width="500" height="342"/>
+    </constraints>
+    <properties/>
+    <border type="none"/>
+    <children>
+      <component id="cade8" class="javax.swing.JLabel" binding="pokemonHeadLabel">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Pokemon"/>
+        </properties>
+      </component>
+      <tabbedpane id="a1b0e" binding="mainTabbedPanel">
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+            <preferred-size width="200" height="200"/>
+          </grid>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <grid id="df83d" binding="addEncounterPanel" layout-manager="GridLayoutManager" row-count="4" column-count="5" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <tabbedpane title="Add Encounter"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="55069" class="javax.swing.JLabel" binding="newPokemonChooseLabel">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                    <preferred-size width="54" height="58"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <text value="Pokemon:"/>
+                </properties>
+              </component>
+              <component id="2dedd" class="javax.swing.JLabel" binding="locationNewPokemonLabel">
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                    <preferred-size width="49" height="36"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <text value="Location:"/>
+                </properties>
+              </component>
+              <component id="29a5d" class="javax.swing.JTextField" binding="newPokemonXPos">
+                <constraints>
+                  <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="150" height="36"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <text value="0"/>
+                </properties>
+              </component>
+              <component id="1642b" class="javax.swing.JTextField" binding="newPokemonYPos">
+                <constraints>
+                  <grid row="1" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="150" height="36"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <text value="0"/>
+                </properties>
+              </component>
+              <component id="3d33c" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                    <preferred-size width="8" height="36"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <text value="x:"/>
+                </properties>
+              </component>
+              <component id="5d95f" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="1" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                    <preferred-size width="9" height="36"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <text value="y:"/>
+                </properties>
+              </component>
+              <component id="f3a04" class="javax.swing.JButton" binding="addButton" default-binding="true">
+                <constraints>
+                  <grid row="3" column="0" row-span="1" col-span="5" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Add"/>
+                </properties>
+              </component>
+              <component id="b89aa" class="javax.swing.JComboBox" binding="newPokemonChooseComboBox">
+                <constraints>
+                  <grid row="0" column="2" row-span="1" col-span="3" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="98" height="58"/>
+                  </grid>
+                </constraints>
+                <properties/>
+              </component>
+              <component id="d765" class="javax.swing.JLabel" binding="errorLabel">
+                <constraints>
+                  <grid row="2" column="0" row-span="1" col-span="5" vsize-policy="4" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                    <preferred-size width="1" height="13"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <foreground color="-4510686"/>
+                  <text value=""/>
+                  <verticalAlignment value="0"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <grid id="87fcc" binding="showEncountersPanel" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <tabbedpane title="Show Encounters"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <scrollpane id="c9e91">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <component id="51e4c" class="javax.swing.JList" binding="encounterList">
+                    <constraints/>
+                    <properties/>
+                  </component>
+                </children>
+              </scrollpane>
+            </children>
+          </grid>
+          <grid id="d33ab" binding="mapEncountersPanel" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <tabbedpane title="Map Encounters"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="c35ad" class="be.howest.ti.pokedex.gui.components.WorldMapJPanel" binding="worldMapJPanel" custom-create="true">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties/>
+              </component>
+            </children>
+          </grid>
+          <grid id="aa76f" binding="trainerProfilePanel" layout-manager="GridLayoutManager" row-count="4" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <tabbedpane title="Trainer Profile"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="4e8d2" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Name:"/>
+                </properties>
+              </component>
+              <component id="91cba" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Pokeballs:"/>
+                </properties>
+              </component>
+              <component id="ae304" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Seen Pokemon:"/>
+                </properties>
+              </component>
+              <component id="924ea" class="javax.swing.JLabel" binding="trainerNameLabel">
+                <constraints>
+                  <grid row="0" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Label"/>
+                </properties>
+              </component>
+              <component id="dc291" class="javax.swing.JLabel" binding="numberOfPokeballsLabel">
+                <constraints>
+                  <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Label"/>
+                </properties>
+              </component>
+              <scrollpane id="b5540">
+                <constraints>
+                  <grid row="2" column="1" row-span="1" col-span="3" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <component id="c7ee7" class="javax.swing.JList" binding="seenPokemonList">
+                    <constraints/>
+                    <properties/>
+                  </component>
+                </children>
+              </scrollpane>
+              <component id="9b20d" class="javax.swing.JButton" binding="decrementPokeballButton">
+                <constraints>
+                  <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="45" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <text value="-"/>
+                </properties>
+              </component>
+              <component id="25568" class="javax.swing.JButton" binding="incrementPokeballButton">
+                <constraints>
+                  <grid row="1" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="45" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <text value="+"/>
+                </properties>
+              </component>
+              <component id="6238a" class="javax.swing.JButton" binding="pokemonLostButton" default-binding="true">
+                <constraints>
+                  <grid row="3" column="2" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Pokemon Lost"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+        </children>
+      </tabbedpane>
+    </children>
+  </grid>
+</form>
