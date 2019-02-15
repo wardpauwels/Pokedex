@@ -1,5 +1,6 @@
 package be.howest.ti.pokedex.util.listeners;
 
+import be.howest.ti.pokedex.controller.mainFrame.MapEncountersController;
 import be.howest.ti.pokedex.controller.mainFrame.PokeFrameController;
 import be.howest.ti.pokedex.data.Repositories;
 import be.howest.ti.pokedex.domain.Pokemon;
@@ -10,19 +11,19 @@ import java.awt.event.MouseListener;
 import java.util.List;
 
 public class MapClickedListener implements MouseListener {
+	private MapEncountersController mapEncountersController;
 	private PokeFrameController pokeFrameController;
 
-	public MapClickedListener(PokeFrameController pokeFrameController) {
-		this.pokeFrameController = pokeFrameController;
+	public MapClickedListener(MapEncountersController mapEncountersController) {
+		this.mapEncountersController = mapEncountersController;
+		pokeFrameController = mapEncountersController.getPokeFrameController();
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		int x = e.getX();
 		int y = e.getY();
-
 		pokeFrameController.tryToAddEncounter(openPokemonChooseWindow(), x, y, false);
-
 	}
 
 	private Pokemon openPokemonChooseWindow() {

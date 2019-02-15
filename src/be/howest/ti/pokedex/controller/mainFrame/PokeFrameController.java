@@ -23,10 +23,10 @@ public class PokeFrameController {
 	public PokeFrameController(Trainer trainer) {
 		initVariables(trainer);
 		loadTrainerEncounters();
-		addEncounterController = new AddEncounterController(this, trainer, pokeFrame);
-		showEncountersController = new ShowEncountersController(pokeFrame);
-		new MapEncountersController(this, pokeFrame);
-		trainerProfilePanelController = new TrainerProfilePanelController(trainer, pokeFrame);
+		addEncounterController = new AddEncounterController(this);
+		showEncountersController = new ShowEncountersController(this);
+		new MapEncountersController(this);
+		trainerProfilePanelController = new TrainerProfilePanelController(this);
 		loadHeadBarText();
 		trainerProfilePanelController.resetPokeballsAndButtonsTrainerPanel();
 	}
@@ -59,15 +59,17 @@ public class PokeFrameController {
 		return trainerProfilePanelController;
 	}
 
-	public void tryToAddEncounter(Pokemon pokemon, int x, int y, boolean addEncounterWindow){
+	public void tryToAddEncounter(Pokemon pokemon, int x, int y, boolean addEncounterWindow) {
 		if (trainer.getNumberOfPokeballs() > 0) {
 			try {
 				Encounter encounter = new EncounterFactory(x, y, trainer, pokemon).getEncounter();
-				getShowEncountersController().encountersModel.addElement(encounter);
+
+				getShowEncountersController().getEncountersModel().addElement(encounter);
+
 				getTrainerProfilePanelController().resetPokeballsAndButtonsTrainerPanel();
 				getTrainerProfilePanelController().updateSeenPokemonModel();
 
-				if (addEncounterWindow){
+				if (addEncounterWindow) {
 					pokeFrame.getErrorLabel().setText("Encounter Added!");
 					addEncounterController.resetWindow();
 				}
@@ -77,5 +79,13 @@ public class PokeFrameController {
 		} else {
 			JOptionPane.showMessageDialog(pokeFrame, StringConstants.ADD_POKEBALLS, StringConstants.NO_POKEBALLS, JOptionPane.ERROR_MESSAGE);
 		}
+	}
+
+	public PokeFrame getPokeFrame() {
+		return pokeFrame;
+	}
+
+	public Trainer getTrainer() {
+		return trainer;
 	}
 }

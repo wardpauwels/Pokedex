@@ -6,6 +6,7 @@ import be.howest.ti.pokedex.domain.Trainer;
 import be.howest.ti.pokedex.gui.PokeFrame;
 import be.howest.ti.pokedex.util.listeners.DecrementPokeballButtonListener;
 import be.howest.ti.pokedex.util.listeners.IncrementPokeballButtonListener;
+import be.howest.ti.pokedex.util.listeners.RemovePokemonFromTrainerListener;
 
 import javax.swing.*;
 
@@ -15,30 +16,35 @@ public class TrainerProfilePanelController {
 	private JList seenPokemonList;
 	private JLabel trainerNameLabel;
 	private JLabel numberOfPokeballsLabel;
+	private JButton pokemonLostButton;
 
-	private Trainer trainer;
+	private PokeFrameController pokeFrameController;
 	private PokeFrame pokeFrame;
+	private Trainer trainer;
 	private DefaultListModel<Pokemon> seenPokemonModel = new DefaultListModel<>();
 
-	TrainerProfilePanelController(Trainer trainer, PokeFrame pokeFrame) {
-		this.trainer = trainer;
-		this.pokeFrame = pokeFrame;
+	public TrainerProfilePanelController(PokeFrameController pokeFrameController) {
+		this.pokeFrameController = pokeFrameController;
 		initVariables();
 		initListeners();
 		loadTrainerDetails();
 	}
 
 	private void initVariables() {
+		pokeFrame = pokeFrameController.getPokeFrame();
+		trainer = pokeFrameController.getTrainer();
 		trainerNameLabel = pokeFrame.getTrainerNameLabel();
 		numberOfPokeballsLabel = pokeFrame.getNumberOfPokeballsLabel();
 		seenPokemonList = pokeFrame.getSeenPokemonList();
 		decrementPokeballButton = pokeFrame.getDecrementPokeballButton();
 		incrementPokeballButton = pokeFrame.getIncrementPokeballButton();
+		pokemonLostButton = pokeFrame.getPokemonLostButton();
 	}
 
 	private void initListeners() {
-		decrementPokeballButton.addActionListener(new DecrementPokeballButtonListener(this, trainer));
-		incrementPokeballButton.addActionListener(new IncrementPokeballButtonListener(this, trainer));
+		decrementPokeballButton.addActionListener(new DecrementPokeballButtonListener(this));
+		incrementPokeballButton.addActionListener(new IncrementPokeballButtonListener(this));
+		pokemonLostButton.addActionListener(new RemovePokemonFromTrainerListener(this));
 	}
 
 	private void loadTrainerDetails() {
@@ -53,11 +59,15 @@ public class TrainerProfilePanelController {
 		decrementPokeballButton.setEnabled(trainer.getNumberOfPokeballs() > 0);
 	}
 
-	public ListModel<Pokemon> updateSeenPokemonModel() {
+	ListModel<Pokemon> updateSeenPokemonModel() {
 		seenPokemonModel.removeAllElements();
 		for (Pokemon pokemon : trainer.getPokemons()) {
 			seenPokemonModel.addElement(pokemon);
 		}
 		return seenPokemonModel;
+	}
+
+	public PokeFrameController getPokeFrameController() {
+		return pokeFrameController;
 	}
 }

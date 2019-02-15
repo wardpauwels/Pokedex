@@ -9,12 +9,11 @@ import javax.swing.*;
 
 public class LoginController {
 	private JButton loginButton;
-
-	private LoginFrame loginFrame;
 	private LoginFrameController loginFrameController;
+	private LoginFrame loginFrame;
+	private LoginButtonListener loginButtonListener;
 
-	LoginController(LoginFrame loginFrame, LoginFrameController loginFrameController) {
-		this.loginFrame = loginFrame;
+	LoginController(LoginFrameController loginFrameController) {
 		this.loginFrameController = loginFrameController;
 
 		initVariables();
@@ -22,16 +21,23 @@ public class LoginController {
 	}
 
 	private void initVariables() {
+		loginFrame = loginFrameController.getLoginFrame();
 		loginButton = loginFrame.getLoginButton();
+
+		loginButtonListener = new LoginButtonListener(this);
 	}
 
 	private void initListeners() {
-		loginButton.addActionListener(new LoginButtonListener(loginFrameController, loginFrame));
+		loginButton.addActionListener(loginButtonListener);
 	}
 
 	public void loginTrainer(Trainer trainer) {
 		var pokeFrameController = new PokeFrameController(trainer);
 		pokeFrameController.showPokeFrameWindow();
 		loginFrame.dispose();
+	}
+
+	public LoginFrameController getLoginFrameController() {
+		return loginFrameController;
 	}
 }

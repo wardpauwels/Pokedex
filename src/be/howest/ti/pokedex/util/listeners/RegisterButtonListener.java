@@ -1,7 +1,8 @@
 package be.howest.ti.pokedex.util.listeners;
 
+import be.howest.ti.pokedex.client.PokeClient;
 import be.howest.ti.pokedex.controller.loginFrame.LoginFrameController;
-import be.howest.ti.pokedex.data.Repositories;
+import be.howest.ti.pokedex.controller.loginFrame.RegisterController;
 import be.howest.ti.pokedex.gui.LoginFrame;
 import be.howest.ti.pokedex.util.BCrypt;
 
@@ -10,12 +11,21 @@ import java.awt.event.ActionListener;
 import java.util.Arrays;
 
 public class RegisterButtonListener implements ActionListener {
+	private RegisterController registerController;
 	private LoginFrameController loginFrameController;
 	private LoginFrame loginFrame;
+	private PokeClient pokeClient;
 
-	public RegisterButtonListener(LoginFrameController loginFrameController, LoginFrame loginFrame) {
-		this.loginFrameController = loginFrameController;
-		this.loginFrame = loginFrame;
+	private boolean doesTrainerExist;
+	private volatile boolean trainerChecked;
+
+	public RegisterButtonListener(RegisterController registerController) {
+		this.registerController = registerController;
+		loginFrameController = registerController.getLoginFrameController();
+		loginFrame = registerController.getLoginFrameController().getLoginFrame();
+		pokeClient = loginFrameController.getPokeClient();
+		doesTrainerExist = false;
+		trainerChecked = false;
 	}
 
 	@Override
@@ -27,12 +37,35 @@ public class RegisterButtonListener implements ActionListener {
 
 		if (username != null && username.length() >= 4) {
 			if ((password != null && repeatedPassword != null) && (password.length >= 4 && repeatedPassword.length >= 4)) {
-				if (Repositories.trainerRepository.getByName(username) == null) {
+				if (!checkIfTrainerExists(username)) {
 					if (Arrays.equals(password, repeatedPassword)) {
-						loginFrameController.getRegisterController().registerTrainer(username, encryptedPassword);
-					} else loginFrame.getRegisterErrorLabel().setText("Passwords do not match.");
-				} else loginFrame.getRegisterErrorLabel().setText("Username already registered.");
-			} else loginFrame.getRegisterErrorLabel().setText("Passwords not given or to short.");
-		} else loginFrame.getRegisterErrorLabel().setText("Username not given or to short.");
+						pokeClient.addTrainer(username, encryptedPassword);
+					} else
+						loginFrame.getRegisterErrorLabel().setText("Passwords do not match.");
+				} else
+					loginFrame.getRegisterErrorLabel().setText("Username already registered.");
+			} else
+				loginFrame.getRegisterErrorLabel().setText("Passwords not given or to short.");
+		} else
+			loginFrame.getRegisterErrorLabel().setText("Username not given or to short.");
+	}
+
+	public boolean checkIfTrainerExists(String username) {
+		doesTrainerExist = false;
+		pokeClient.checkIfTrainerDoesExist(username);
+
+		while (!trainerChecked) {
+			Thread.onSpinWait();
+		}
+		trainerChecked = false;
+		return doesTrainerExist;
+	}
+
+	public void setDoesTrainerExist(boolean doesTrainerExist) {
+		this.doesTrainerExist = doesTrainerExist;
+	}
+
+	public void trainerChecked() {
+		trainerChecked = true;
 	}
 }

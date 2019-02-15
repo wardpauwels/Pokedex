@@ -7,13 +7,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class DecrementPokeballButtonListener implements ActionListener {
-
-	private Trainer trainer;
 	private TrainerProfilePanelController trainerProfilePanelController;
+	private Trainer trainer;
 
-	public DecrementPokeballButtonListener(TrainerProfilePanelController trainerProfilePanelController, Trainer trainer) {
-		this.trainer = trainer;
+	public DecrementPokeballButtonListener(TrainerProfilePanelController trainerProfilePanelController) {
 		this.trainerProfilePanelController = trainerProfilePanelController;
+		trainer = trainerProfilePanelController.getPokeFrameController().getTrainer();
 	}
 
 	@Override

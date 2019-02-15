@@ -37,7 +37,7 @@ public class PokeFrame extends JFrame {
 
 	public PokeFrame(List<Encounter> encounters) {
 		this.encounters = encounters;
-		setTitle("Pokedex");
+		setTitle("Program");
 		setSize(WIDTH, HEIGHT);
 		setContentPane(mainPanel);
 		setLocationRelativeTo(null);
@@ -94,6 +94,10 @@ public class PokeFrame extends JFrame {
 
 	public WorldMapJPanel getWorldMapJPanel() {
 		return worldMapJPanel;
+	}
+
+	public JButton getPokemonLostButton() {
+		return pokemonLostButton;
 	}
 
 	private void createUIComponents() {

@@ -1,7 +1,6 @@
 package be.howest.ti.pokedex.controller.loginFrame;
 
 import be.howest.ti.pokedex.gui.LoginFrame;
-import be.howest.ti.pokedex.util.factory.TrainerFactory;
 import be.howest.ti.pokedex.util.listeners.RegisterButtonListener;
 
 import javax.swing.*;
@@ -13,11 +12,12 @@ public class RegisterController {
 	private JButton registerButton;
 	private JLabel registerErrorLabel;
 
-	private LoginFrame loginFrame;
 	private LoginFrameController loginFrameController;
+	private LoginFrame loginFrame;
 
-	RegisterController(LoginFrame loginFrame, LoginFrameController loginFrameController) {
-		this.loginFrame = loginFrame;
+	private RegisterButtonListener registerButtonListener;
+
+	RegisterController(LoginFrameController loginFrameController) {
 		this.loginFrameController = loginFrameController;
 
 		initVariables();
@@ -25,26 +25,33 @@ public class RegisterController {
 	}
 
 	private void initVariables() {
+		this.loginFrame = loginFrameController.getLoginFrame();
+
 		usernameRegisterTextField = loginFrame.getUsernameRegisterTextField();
 		passwordTextField = loginFrame.getPasswordTextField();
 		passwordRepeatTextfield = loginFrame.getPasswordRepeatTextfield();
 		registerButton = loginFrame.getRegisterButton();
 		registerErrorLabel = loginFrame.getRegisterErrorLabel();
+
+		registerButtonListener = new RegisterButtonListener(this);
 	}
 
 	private void initListeners() {
-		registerButton.addActionListener(new RegisterButtonListener(loginFrameController, loginFrame));
+		registerButton.addActionListener(registerButtonListener);
 	}
 
-	public void registerTrainer(String username, String encryptedPassword) {
-		new TrainerFactory(username, encryptedPassword, 5);
+	public void trainerAddedResetFields() {
 		registerErrorLabel.setText("New trainer succesfully registered!");
-		resetRegisterFields();
-	}
-
-	private void resetRegisterFields() {
 		usernameRegisterTextField.setText("");
 		passwordTextField.setText("");
 		passwordRepeatTextfield.setText("");
+	}
+
+	public LoginFrameController getLoginFrameController() {
+		return loginFrameController;
+	}
+
+	public RegisterButtonListener getRegisterButtonListener() {
+		return registerButtonListener;
 	}
 }

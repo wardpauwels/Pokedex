@@ -20,7 +20,7 @@ public class LoginFrame extends JFrame {
 	private JTabbedPane loginTabbedPane;
 
 	public LoginFrame() {
-		setTitle("Pokedex");
+		setTitle("Program");
 		setSize(WIDTH, HEIGHT);
 		setContentPane(mainPanel);
 		setLocationRelativeTo(null);

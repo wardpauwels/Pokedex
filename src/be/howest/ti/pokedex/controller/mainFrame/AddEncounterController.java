@@ -2,37 +2,33 @@ package be.howest.ti.pokedex.controller.mainFrame;
 
 import be.howest.ti.pokedex.data.Repositories;
 import be.howest.ti.pokedex.domain.Pokemon;
-import be.howest.ti.pokedex.domain.Trainer;
 import be.howest.ti.pokedex.gui.PokeFrame;
 import be.howest.ti.pokedex.util.listeners.AddButtonListener;
 
 import javax.swing.*;
 
-class AddEncounterController {
-
-	private Trainer trainer;
-	private PokeFrame pokeFrame;
+public class AddEncounterController {
 	private PokeFrameController pokeFrameController;
+	private PokeFrame pokeFrame;
 
 	private JButton addButton;
 	private JComboBox<Pokemon> newPokemonChooseComboBox;
 
-	AddEncounterController(PokeFrameController pokeFrameController, Trainer trainer, PokeFrame pokeFrame) {
+	AddEncounterController(PokeFrameController pokeFrameController) {
 		this.pokeFrameController = pokeFrameController;
-		this.trainer = trainer;
-		this.pokeFrame = pokeFrame;
 		initVariables();
 		initListeners();
 		initComponents();
 	}
 
 	private void initVariables() {
+		pokeFrame = pokeFrameController.getPokeFrame();
 		addButton = pokeFrame.getAddButton();
 		newPokemonChooseComboBox = pokeFrame.getNewPokemonChooseComboBox();
 	}
 
 	private void initListeners() {
-		addButton.addActionListener(new AddButtonListener(pokeFrameController, pokeFrame));
+		addButton.addActionListener(new AddButtonListener(this));
 	}
 
 	private void initComponents() {
@@ -51,5 +47,9 @@ class AddEncounterController {
 		pokeFrame.getNewPokemonXPos().setText("0");
 		pokeFrame.getNewPokemonYPos().setText("0");
 		pokeFrame.getNewPokemonChooseComboBox().setSelectedIndex(0);
+	}
+
+	public PokeFrameController getPokeFrameController() {
+		return pokeFrameController;
 	}
 }

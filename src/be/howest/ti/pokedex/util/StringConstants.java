@@ -19,4 +19,8 @@ public class StringConstants {
 	public static final String UNABLE_TO_GET_THIS_LOCATION = "Unable to retrieve this location.";
 	public static final String READ_MAP_FAILED = "Failed to read the world map.";
 	public static final String UNABLE_TO_GET_THIS_ENCOUNTERS = "Failed to get encounter by id.";
+
+	//server vars
+	public static final int SERVER_PORT = 1997;
+	public static final String SERVER_ADDRESS = "127.0.0.1";
 }

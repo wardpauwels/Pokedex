@@ -1,27 +1,27 @@
 package be.howest.ti.pokedex.controller.mainFrame;
 
-import be.howest.ti.pokedex.gui.PokeFrame;
 import be.howest.ti.pokedex.gui.components.WorldMapJPanel;
 import be.howest.ti.pokedex.util.listeners.MapClickedListener;
 
-class MapEncountersController {
-	private PokeFrame pokeFrame;
+public class MapEncountersController {
 	private PokeFrameController pokeFrameController;
 	private WorldMapJPanel worldMapJPanel;
 
-	MapEncountersController(PokeFrameController pokeFrameController, PokeFrame pokeFrame) {
-		this.pokeFrame = pokeFrame;
+	MapEncountersController(PokeFrameController pokeFrameController) {
 		this.pokeFrameController = pokeFrameController;
-
 		initVariables();
 		initListeners();
 	}
 
 	private void initVariables() {
-		this.worldMapJPanel = pokeFrame.getWorldMapJPanel();
+		this.worldMapJPanel = pokeFrameController.getPokeFrame().getWorldMapJPanel();
 	}
 
 	private void initListeners() {
-		worldMapJPanel.addMouseListener(new MapClickedListener(pokeFrameController));
+		worldMapJPanel.addMouseListener(new MapClickedListener(this));
+	}
+
+	public PokeFrameController getPokeFrameController() {
+		return pokeFrameController;
 	}
 }

@@ -1,6 +1,6 @@
 package be.howest.ti.pokedex.util.listeners;
 
-import be.howest.ti.pokedex.controller.loginFrame.LoginFrameController;
+import be.howest.ti.pokedex.controller.loginFrame.LoginController;
 import be.howest.ti.pokedex.data.Repositories;
 import be.howest.ti.pokedex.domain.Trainer;
 import be.howest.ti.pokedex.gui.LoginFrame;
@@ -11,12 +11,12 @@ import java.awt.event.ActionListener;
 import java.util.Arrays;
 
 public class LoginButtonListener implements ActionListener {
-	private LoginFrameController loginFrameController;
+	private LoginController loginController;
 	private LoginFrame loginFrame;
 
-	public LoginButtonListener(LoginFrameController loginFrameController, LoginFrame loginFrame) {
-		this.loginFrameController = loginFrameController;
-		this.loginFrame = loginFrame;
+	public LoginButtonListener(LoginController loginController) {
+		this.loginController = loginController;
+		loginFrame = loginController.getLoginFrameController().getLoginFrame();
 	}
 
 	@Override
@@ -29,10 +29,13 @@ public class LoginButtonListener implements ActionListener {
 			if (trainer != null) {
 				if (password != null && password.length >= 4) {
 					if (BCrypt.checkpw(Arrays.toString(password), trainer.getPassword())) {
-						loginFrameController.getLoginController().loginTrainer(trainer);
+						loginController.loginTrainer(trainer);
 					}
-				} else loginFrame.getLoginErrorLabel().setText("No password given or password too short.");
-			} else loginFrame.getLoginErrorLabel().setText("Trainer not found.");
-		} else loginFrame.getLoginErrorLabel().setText("Username not given or to short.");
+				} else
+					loginFrame.getLoginErrorLabel().setText("No password given or password too short.");
+			} else
+				loginFrame.getLoginErrorLabel().setText("Trainer not found.");
+		} else
+			loginFrame.getLoginErrorLabel().setText("Username not given or to short.");
 	}
 }
