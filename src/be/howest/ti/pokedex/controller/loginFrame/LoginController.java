@@ -37,6 +37,10 @@ public class LoginController {
 		loginFrame.dispose();
 	}
 
+	public LoginButtonListener getLoginButtonListener() {
+		return loginButtonListener;
+	}
+
 	public LoginFrameController getLoginFrameController() {
 		return loginFrameController;
 	}

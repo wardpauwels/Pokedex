@@ -19,11 +19,10 @@ public class TrainerProfilePanelController {
 	private JButton pokemonLostButton;
 
 	private PokeFrameController pokeFrameController;
-	private PokeFrame pokeFrame;
 	private Trainer trainer;
 	private DefaultListModel<Pokemon> seenPokemonModel = new DefaultListModel<>();
 
-	public TrainerProfilePanelController(PokeFrameController pokeFrameController) {
+	TrainerProfilePanelController(PokeFrameController pokeFrameController) {
 		this.pokeFrameController = pokeFrameController;
 		initVariables();
 		initListeners();
@@ -31,7 +30,7 @@ public class TrainerProfilePanelController {
 	}
 
 	private void initVariables() {
-		pokeFrame = pokeFrameController.getPokeFrame();
+		PokeFrame pokeFrame = pokeFrameController.getPokeFrame();
 		trainer = pokeFrameController.getTrainer();
 		trainerNameLabel = pokeFrame.getTrainerNameLabel();
 		numberOfPokeballsLabel = pokeFrame.getNumberOfPokeballsLabel();

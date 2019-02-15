@@ -1,7 +1,6 @@
 package be.howest.ti.pokedex.util.listeners;
 
 import be.howest.ti.pokedex.client.PokeClient;
-import be.howest.ti.pokedex.controller.loginFrame.LoginFrameController;
 import be.howest.ti.pokedex.controller.loginFrame.RegisterController;
 import be.howest.ti.pokedex.gui.LoginFrame;
 import be.howest.ti.pokedex.util.BCrypt;
@@ -11,8 +10,6 @@ import java.awt.event.ActionListener;
 import java.util.Arrays;
 
 public class RegisterButtonListener implements ActionListener {
-	private RegisterController registerController;
-	private LoginFrameController loginFrameController;
 	private LoginFrame loginFrame;
 	private PokeClient pokeClient;
 
@@ -20,10 +17,8 @@ public class RegisterButtonListener implements ActionListener {
 	private volatile boolean trainerChecked;
 
 	public RegisterButtonListener(RegisterController registerController) {
-		this.registerController = registerController;
-		loginFrameController = registerController.getLoginFrameController();
 		loginFrame = registerController.getLoginFrameController().getLoginFrame();
-		pokeClient = loginFrameController.getPokeClient();
+		pokeClient = registerController.getLoginFrameController().getPokeClient();
 		doesTrainerExist = false;
 		trainerChecked = false;
 	}

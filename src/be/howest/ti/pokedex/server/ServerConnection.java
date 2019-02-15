@@ -64,6 +64,15 @@ public class ServerConnection implements Runnable, MessageHandler {
 	}
 
 	@Override
+	public void handleGetTrainerByUsernameReq(GetTrainerByUsernameRequest msg) {
+		Trainer trainer = Repositories.trainerRepository.getByName(msg.getUsername());
+		if (trainer != null) {
+			msg.setTrainer(trainer);
+		}
+		messageIO.send(msg);
+	}
+
+	@Override
 	public void handleClosedSocket(ClosedSocket msg) {
 
 	}

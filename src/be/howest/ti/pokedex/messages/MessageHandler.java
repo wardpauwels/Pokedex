@@ -6,5 +6,7 @@ public interface MessageHandler {
 
 	void handleDoesTrainerAlreadyExistReq(DoesTrainerAlreadyExistRequest msg);
 
+	void handleGetTrainerByUsernameReq(GetTrainerByUsernameRequest msg);
+
 	void handleClosedSocket(ClosedSocket msg);
 }

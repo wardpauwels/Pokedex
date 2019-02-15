@@ -6,9 +6,8 @@ import be.howest.ti.pokedex.gui.PokeFrame;
 
 import javax.swing.*;
 
-public class ShowEncountersController {
+class ShowEncountersController {
 	private PokeFrameController pokeFrameController;
-	private PokeFrame pokeFrame;
 	private DefaultListModel<Encounter> encountersModel;
 	private JList<Encounter> encounterList;
 
@@ -19,7 +18,7 @@ public class ShowEncountersController {
 	}
 
 	private void initVariables() {
-		pokeFrame = pokeFrameController.getPokeFrame();
+		PokeFrame pokeFrame = pokeFrameController.getPokeFrame();
 		encounterList = pokeFrame.getEncounterList();
 	}
 
@@ -27,7 +26,7 @@ public class ShowEncountersController {
 		encounterList.setModel(getEncountersModel());
 	}
 
-	public DefaultListModel<Encounter> getEncountersModel() {
+	DefaultListModel<Encounter> getEncountersModel() {
 		if (encountersModel == null) {
 			encountersModel = new DefaultListModel<>();
 			for (Encounter encounter : Repositories.encounterRepository.getAll()) {

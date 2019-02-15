@@ -13,7 +13,6 @@ public class RegisterController {
 	private JLabel registerErrorLabel;
 
 	private LoginFrameController loginFrameController;
-	private LoginFrame loginFrame;
 
 	private RegisterButtonListener registerButtonListener;
 
@@ -25,7 +24,7 @@ public class RegisterController {
 	}
 
 	private void initVariables() {
-		this.loginFrame = loginFrameController.getLoginFrame();
+		LoginFrame loginFrame = loginFrameController.getLoginFrame();
 
 		usernameRegisterTextField = loginFrame.getUsernameRegisterTextField();
 		passwordTextField = loginFrame.getPasswordTextField();
@@ -40,7 +39,7 @@ public class RegisterController {
 		registerButton.addActionListener(registerButtonListener);
 	}
 
-	public void trainerAddedResetFields() {
+	void trainerAddedResetFields() {
 		registerErrorLabel.setText("New trainer succesfully registered!");
 		usernameRegisterTextField.setText("");
 		passwordTextField.setText("");

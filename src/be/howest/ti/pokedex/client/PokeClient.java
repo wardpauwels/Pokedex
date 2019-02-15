@@ -15,11 +15,10 @@ public class PokeClient implements Runnable, MessageHandler {
 	private final LoginFrameController loginFrameController;
 	private MessageIO messageIO;
 	private boolean isClosed;
-	private Socket socket;
 
 	public PokeClient() {
 		try {
-			socket = new Socket(StringConstants.SERVER_ADDRESS, StringConstants.SERVER_PORT);
+			Socket socket = new Socket(StringConstants.SERVER_ADDRESS, StringConstants.SERVER_PORT);
 			this.messageIO = new MessageIO(socket);
 			this.isClosed = false;
 		} catch (IOException ex) {
@@ -42,15 +41,11 @@ public class PokeClient implements Runnable, MessageHandler {
 		this.close();
 	}
 
-	public void close() {
+	private void close() {
 		if (!isClosed) {
 			this.isClosed = true;
 			messageIO.close();
 		}
-	}
-
-	public boolean isclosed() {
-		return isClosed;
 	}
 
 	@Override
@@ -75,8 +70,18 @@ public class PokeClient implements Runnable, MessageHandler {
 	}
 
 	@Override
-	public void handleClosedSocket(ClosedSocket msg) {
+	public void handleGetTrainerByUsernameReq(GetTrainerByUsernameRequest msg) {
+		if (!isClosed) {
+			if (msg.getTrainer() != null) {
+				loginFrameController.getLoginController().getLoginButtonListener().setTrainer(msg.getTrainer());
+			}
+			loginFrameController.getLoginController().getLoginButtonListener().setTrainerReceived(true);
+		}
+	}
 
+	@Override
+	public void handleClosedSocket(ClosedSocket msg) {
+		System.out.println("Disconnected from server.");
 	}
 
 	public void checkIfTrainerDoesExist(String username) {
@@ -89,6 +94,13 @@ public class PokeClient implements Runnable, MessageHandler {
 	public void addTrainer(String username, String hashpw) {
 		if (!isClosed) {
 			Message req = new AddNewTrainerRequest(username, hashpw);
+			messageIO.send(req);
+		}
+	}
+
+	public void getTrainerByUsername(String username) {
+		if (!isClosed) {
+			Message req = new GetTrainerByUsernameRequest(username);
 			messageIO.send(req);
 		}
 	}
