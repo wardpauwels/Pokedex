@@ -9,12 +9,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class AddButtonListener implements ActionListener {
-	private AddEncounterController addEncounterController;
 	private PokeFrameController pokeFrameController;
 	private PokeFrame pokeFrame;
 
 	public AddButtonListener(AddEncounterController addEncounterController) {
-		this.addEncounterController = addEncounterController;
 		pokeFrameController = addEncounterController.getPokeFrameController();
 		pokeFrame = pokeFrameController.getPokeFrame();
 	}

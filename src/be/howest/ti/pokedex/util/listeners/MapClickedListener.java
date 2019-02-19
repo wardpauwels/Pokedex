@@ -11,11 +11,9 @@ import java.awt.event.MouseListener;
 import java.util.List;
 
 public class MapClickedListener implements MouseListener {
-	private MapEncountersController mapEncountersController;
 	private PokeFrameController pokeFrameController;
 
 	public MapClickedListener(MapEncountersController mapEncountersController) {
-		this.mapEncountersController = mapEncountersController;
 		pokeFrameController = mapEncountersController.getPokeFrameController();
 	}
 

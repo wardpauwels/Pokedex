@@ -1,9 +1,9 @@
 package be.howest.ti.pokedex.util;
 
 public class SqlConstants {
-	public static final String URL = "jdbc:mysql://localhost/pokemon?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+	public static final String URL = "jdbc:mysql://localhost/pokemon?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&useSSL=false";
 	public static final String USR = "wardpauwels";
-	public static final String PWD = "lkqbzYL4";
+	public static final String PWD = "mKliEzBYva0K8e6m";
 
 	public static final String SELECT_ALL_ENCOUNTERS = "SELECT * FROM encounter;";
 	public static final String SELECT_ENCOUNTERS_BY_TRAINER = "SELECT * FROM encounter WHERE trainerid = ?;";

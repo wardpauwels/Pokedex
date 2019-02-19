@@ -29,8 +29,8 @@ public class PokeClient implements Runnable, MessageHandler {
 	}
 
 	public static void main(String[] args) {
-		PokeClient pokeClient = new PokeClient();
-		pokeClient.run();
+		Thread c = new Thread(new PokeClient());
+		c.start();
 	}
 
 	@Override
@@ -52,7 +52,7 @@ public class PokeClient implements Runnable, MessageHandler {
 	public void handleNewTrainerReq(AddNewTrainerRequest msg) {
 		if (!isClosed) {
 			if (msg.isAdded()) {
-				loginFrameController.trainerRegistered(msg);
+				loginFrameController.trainerRegistered();
 			}
 		} else {
 			handleClosedSocket(new ClosedSocket("No connection to server"));

@@ -18,7 +18,7 @@ public class WorldMapJPanel extends JPanel {
 
 	public WorldMapJPanel(List<Encounter> encounters) {
 		try {
-			image = ImageIO.read(new File("./resources/world.png"));
+			image = ImageIO.read(new File("./res/world.png"));
 			this.encounters = encounters;
 		} catch (IOException ex) {
 			throw new WorldMapException(StringConstants.READ_MAP_FAILED, ex);
